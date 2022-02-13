@@ -26,6 +26,7 @@ interface MyObject {
 
 // function getDataA(obj: MyObject): MyObject;
 // function getDataB(a: number, b: number): MyObject;
+// function getDataD(a: string): MyObject;
 function getDataC(paramOne: unknown, paramTwo?: unknown): MyObject {
   let data: MyObject = {
     x: 0,
@@ -34,6 +35,11 @@ function getDataC(paramOne: unknown, paramTwo?: unknown): MyObject {
 
   if (typeof paramOne === "object") {
     data = { ...(paramOne as MyObject) };
+  } else if (typeof paramOne === "string") {
+    (paramOne as string).split(", ").forEach((item) => {
+      const [key, value] = item.split(":");
+      data[key as "x" | "y"] = Number(value);
+    });
   } else {
     data = {
       x: paramOne as number,
@@ -43,4 +49,6 @@ function getDataC(paramOne: unknown, paramTwo?: unknown): MyObject {
 
   return data;
 }
-console.log(getDataC({ x: 4, y: 5 }));
+console.log(getDataC(9, 30)); //Output: { x: 9, y: 30}
+console.log(getDataC({ x: 2, y: 4 })); //Output: { x: 2, y: 4}
+console.log(getDataC("x:1, y:2"));
