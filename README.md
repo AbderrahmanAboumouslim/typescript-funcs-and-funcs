@@ -23,3 +23,7 @@ npm install ts-node -D
 ```sh
 npx tsc --init
 ```
+
+# RUN the code
+
+npx ts-node file-location.ts
