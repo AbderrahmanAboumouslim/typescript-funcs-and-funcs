@@ -18,3 +18,28 @@ const [override, setOverride] = genericFunc<number | undefined>(undefined);
 console.log(override()); //Output: undefined
 setOverride(30);
 console.log(override()); //Output: 30
+
+///////////////////////////////////////////////////////////
+interface Player<P> {
+  player: P;
+  level: number;
+}
+
+const getLevel = <T>(players: T[], level: (x: T) => number): T[] => {
+  const playerItem: Player<T>[] = players.map((player) => ({
+    player,
+    level: level(player),
+  }));
+
+  playerItem.sort((a, b) => a.level - b.level);
+
+  return playerItem.map((item) => item.player);
+};
+
+const team = [
+  { name: "Abderrahman", level: 27 },
+  { name: "Boss", level: 1000 },
+  { name: "noob", level: 3 },
+];
+
+console.log(getLevel(team, ({ level }) => level));
