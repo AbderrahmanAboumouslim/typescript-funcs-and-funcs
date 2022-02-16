@@ -2,12 +2,18 @@
 // create a reduce() that generate map(), filter() and forEach()
 
 // forEach
-const generator = <T>(arr: T[], forEach: (x: T) => void): void => {
+const generatorForEach = <T>(arr: T[], forEachFunc: (x: T) => void): void => {
   arr.reduce((_, curr) => {
-    forEach(curr);
+    forEachFunc(curr);
     return undefined;
   }, undefined);
 };
-generator(["javascript", "python", "php"], (x) =>
+generatorForEach(["javascript", "python", "php"], (x) =>
   console.log(`language: ${x}`)
 );
+
+// filter
+const generatorFilter = <T>(items: T[], filterFunc: (x: T) => boolean): T[] =>
+  items.reduce((a: T[], b) => (filterFunc(b) ? [...a, b] : a), []);
+
+console.log(generatorFilter([1, 44, 2, 33, 10, 5, 100], (x) => x >= 10));
