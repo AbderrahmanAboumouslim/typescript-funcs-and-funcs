@@ -14,12 +14,12 @@ generatorForEach(["javascript", "python", "php"], (x) =>
 
 // filter
 const generatorFilter = <T>(items: T[], filterFunc: (x: T) => boolean): T[] =>
-  items.reduce((a: T[], b) => (filterFunc(b) ? [...a, b] : a), []);
+  items.reduce((a, b) => (filterFunc(b) ? [...a, b] : a), [] as T[]);
 
 console.log(generatorFilter([1, 44, 2, 33, 10, 5, 100], (x) => x >= 10));
 
 // Map
-const generatorMap = <T>(items: T[], mapFunc: (x: T) => T): T[] =>
-  items.reduce((a: T[], b) => [...a, mapFunc(b)], []);
+const generatorMap = <T, N>(items: T[], mapFunc: (x: T) => N): N[] =>
+  items.reduce((a, b) => [...a, mapFunc(b)], [] as N[]);
 
-console.log(generatorMap([1, 2, 3, 4, 5], (x) => x + 2));
+console.log(generatorMap([1, 2, 3, 4, 5], (x) => "number-" + x));
