@@ -4,11 +4,14 @@ interface Dev {
   email: string;
 }
 
-interface Override {
-  name?: string;
-  age?: number;
-  email?: string;
-}
+// interface Override {
+//   name?: string;
+//   age?: number;
+//   email?: string;
+// }
+
+type Override = Partial<Dev>;
+
 // override
 const generateDev = (dev: Dev, override: Override): Dev => {
   return { ...dev, ...override };
