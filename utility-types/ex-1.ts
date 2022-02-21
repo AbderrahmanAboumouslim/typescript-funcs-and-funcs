@@ -10,7 +10,11 @@ interface Dev {
 //   email?: string;
 // }
 
+// optional
 type Override = Partial<Dev>;
+
+// required
+type requiredDev = Required<Dev>;
 
 // override
 const generateDev = (dev: Dev, override: Override): Dev => {
