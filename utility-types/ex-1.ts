@@ -21,6 +21,9 @@ const generateDev = (dev: Dev, override: Override): Dev => {
   return { ...dev, ...override };
 };
 
+// Pick
+type pickNameAge = Pick<Dev, 'name' | 'age'>
+
 console.log(
   generateDev(
     { name: "Abderrahamn", age: 25, email: "abcd@ok.com" },
