@@ -22,7 +22,7 @@ const generateDev = (dev: Dev, override: Override): Dev => {
 };
 
 // Pick
-type pickNameAge = Pick<Dev, 'name' | 'age'>
+type pickNameAge = Pick<Dev, "name" | "age">;
 
 console.log(
   generateDev(
@@ -30,3 +30,20 @@ console.log(
     { email: "myEmail@youEmail.com" }
   )
 );
+
+// Record
+interface player {
+  name: string;
+  level: number;
+}
+
+type country = "morocco" | "italy" | "japan" | "canada";
+
+const players: Record<country, player> = {
+  canada: { name: "loli", level: 34 },
+  italy: { name: "nona", level: 44 },
+  morocco: { name: "rokinos", level: 24 },
+  japan: { name: "tchu", level: 99 }
+};
+
+console.log(players.morocco);
