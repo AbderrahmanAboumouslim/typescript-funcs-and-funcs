@@ -67,3 +67,18 @@ console.log(
     { name: "Tom", id: "nanoni" }
   ])
 );
+
+// Omit (it is opposite of Pick)
+const removeId = (arr: Dev[]): Record<string, Omit<Dev, "id">> => {
+  return arr.reduce((a, b) => {
+    const { id, ...anything } = b;
+    return { ...a, [id]: anything };
+  }, {});
+};
+
+console.log(
+  removeId([
+    { name: "Rokinos", id: "okidoki" },
+    { name: "Tom", id: "nanoni" }
+  ])
+);
