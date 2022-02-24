@@ -2,7 +2,7 @@ interface Dev {
   name: string;
   age?: number;
   email?: string;
-  id: string;
+  id: number;
 }
 
 // interface Override {
@@ -31,7 +31,7 @@ console.log(
       name: "Abderrahamn",
       age: 25,
       email: "abcd@ok.com",
-      id: "randomixidisid"
+      id: 1010101
     },
     { email: "myEmail@youEmail.com" }
   )
@@ -63,13 +63,14 @@ const keyValue = (arr: Dev[]): Record<string, Dev> => {
 
 console.log(
   keyValue([
-    { name: "Rokinos", id: "okidoki" },
-    { name: "Tom", id: "nanoni" }
+    { name: "Rokinos", id: 11 },
+    { name: "Tom", id: 22 }
   ])
 );
 
 // Omit (it is opposite of Pick)
-const removeId = (arr: Dev[]): Record<string, Omit<Dev, "id">> => {
+type kickId = Omit<Dev, "id">;
+const removeId = (arr: Dev[]): Record<Dev["id"], kickId> => {
   return arr.reduce((a, b) => {
     const { id, ...anything } = b;
     return { ...a, [id]: anything };
@@ -78,7 +79,7 @@ const removeId = (arr: Dev[]): Record<string, Omit<Dev, "id">> => {
 
 console.log(
   removeId([
-    { name: "Rokinos", id: "okidoki" },
-    { name: "Tom", id: "nanoni" }
+    { name: "Rokinos", id: 1000 },
+    { name: "Tom", id: 2000 }
   ])
 );
